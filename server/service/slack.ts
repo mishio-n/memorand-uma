@@ -1,7 +1,7 @@
 import { BettingHorse } from '$/types'
 import { BetType, PrismaClient } from '@prisma/client'
 import { WebClient } from '@slack/web-api'
-import { SLACK_CHANNEL, SLACK_TOKEN } from './envValues'
+import { APP_URL, SLACK_CHANNEL, SLACK_TOKEN } from './envValues'
 import { getRaceCourses } from './race-corse'
 
 type NotificationParams = {
@@ -88,7 +88,7 @@ export const notifyNewBetting = async ({
           value: `${BET_TYPE_TABLE[horse.type]}: ${horse.number}番`,
           short: true
         })),
-        footer: 'http://localhost:3000'
+        footer: APP_URL
       }
     ]
   })
