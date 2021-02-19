@@ -2,8 +2,8 @@ import { Alert, AlertIcon, Box, Flex, Text } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
-import BettingButton from '~/components/BettingButton'
 import Loading from '~/components/Loading'
+import MarkCard from '~/components/MarkCard'
 import RaceList from '~/components/RaceList'
 import { BettingData, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
@@ -76,8 +76,16 @@ const Home = () => {
             ({dayJP(day)})
           </Text>
         </Flex>
-        <BettingButton courses={courses} date={date} fetcher={fetchBettings} />
-        <Box width="90%">
+        {/* <BettingButton courses={courses} date={date} fetcher={fetchBettings} /> */}
+        <MarkCard
+          courses={courses}
+          date={date}
+          fetcher={fetchBettings}
+          onClose={() => {
+            console.log('close')
+          }}
+        />
+        <Box width="90%" mt={4}>
           <RaceList raceCourses={courses} bettings={bettings} />
         </Box>
       </Flex>

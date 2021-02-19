@@ -136,7 +136,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
   }
   return (
     <>
-      <form>
+      <Box background="markCard.bg" borderRadius="5px 5px 0 0" p={5} pb={0}>
         <Flex direction="column">
           <Flex mb={2}>
             <Flex mr={2}>
@@ -292,7 +292,99 @@ const MarkCard: React.FC<MarkCardProps> = ({
             投票する
           </Button>
         </Flex>
-      </form>
+        <HStack spacing={5} pt={5}>
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+          <Box
+            w="8px"
+            h="15px"
+            bg="rgba(0,12,28,1.0)"
+            borderRadius="2px 2px 0 0"
+          />
+        </HStack>
+      </Box>
     </>
   )
 }
