@@ -17,7 +17,7 @@
     "migrate:dev": "npm run migrate:dev --prefix server",
     "migrate:reset": "npm run migrate:reset --prefix server",
     "start": "run-p start:*",
-    "start:client": "next start",
+    "start:client": "cross-env NEXTAUTH_URL=https://app.memoranduma.com next start",
     "start:server": "npm start --prefix server",
     "test": "npm run build:types && jest",
     "typecheck": "npm run build:types && tsc --noEmit && tsc --noEmit -p server"
