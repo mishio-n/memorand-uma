@@ -1,5 +1,6 @@
 import { Alert, AlertIcon, Box, Flex, Text } from '@chakra-ui/react'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import Loading from '~/components/Loading'
@@ -29,7 +30,9 @@ const dayJP = (day: number) => {
 
 const Home = () => {
   const [session] = useSession()
-  const today = dayjs()
+  // 20時から前日投票を可能にするため、日本時間から4時間ずらす
+  dayjs.extend(utc)
+  const today = dayjs().utcOffset(9 + 4)
   const day = today.day()
   const date = today.format('YYYYMMDD')
 
