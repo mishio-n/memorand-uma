@@ -136,7 +136,13 @@ const MarkCard: React.FC<MarkCardProps> = ({
   }
   return (
     <>
-      <Box background="markCard.bg" borderRadius="5px 5px 0 0" p={5} pb={0}>
+      <Box
+        background="markCard.bg"
+        borderRadius="5px 5px 0 0"
+        p={5}
+        pb={0}
+        boxShadow="lg"
+      >
         <Flex direction="column">
           <Flex mb={2}>
             <Flex mr={2}>
