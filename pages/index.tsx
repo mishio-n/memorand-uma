@@ -3,9 +3,11 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
+import FormationMarkCard from '~/components/FormationMarkCard'
 import Loading from '~/components/Loading'
 import NormalMarkCard from '~/components/NormalMarkCard'
 import RaceList from '~/components/RaceList'
+import WheelMarkCard from '~/components/WheelMarkCard'
 import { BettingData, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
 
@@ -80,14 +82,32 @@ const Home = () => {
           </Text>
         </Flex>
         {/* <BettingButton courses={courses} date={date} fetcher={fetchBettings} /> */}
-        <NormalMarkCard
-          courses={courses}
-          date={date}
-          fetcher={fetchBettings}
-          onClose={() => {
-            console.log('close')
-          }}
-        />
+        <Flex>
+          <NormalMarkCard
+            courses={courses}
+            date={date}
+            fetcher={fetchBettings}
+            onClose={() => {
+              console.log('close')
+            }}
+          />
+          <FormationMarkCard
+            courses={courses}
+            date={date}
+            fetcher={fetchBettings}
+            onClose={() => {
+              console.log('close')
+            }}
+          />
+          <WheelMarkCard
+            courses={courses}
+            date={date}
+            fetcher={fetchBettings}
+            onClose={() => {
+              console.log('close')
+            }}
+          />
+        </Flex>
         <Box width="90%" mt={4}>
           <RaceList raceCourses={courses} bettings={bettings} />
         </Box>

@@ -62,7 +62,7 @@ type MarkCardProps = {
   fetcher: () => Promise<void>
 }
 
-const MarkCard: React.FC<MarkCardProps> = ({
+const WheelMarkCard: React.FC<MarkCardProps> = ({
   courses,
   date,
   onClose,
@@ -139,7 +139,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
   return (
     <>
       <Box
-        background="markCard.green.bg"
+        background="markCard.blue.bg"
         borderRadius="5px 5px 0 0"
         p={5}
         pb={0}
@@ -149,10 +149,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
           <Flex mb={2}>
             <Flex mr={2}>
               <MarkCardContainer
-                border="markCard.green.container.border"
-                bg="markCard.green.container.bg"
+                border="markCard.blue.container.border"
+                bg="markCard.blue.container.bg"
               >
-                <MarkCardLabel bg="markCard.green.label">場名</MarkCardLabel>
+                <MarkCardLabel bg="markCard.blue.label">場名</MarkCardLabel>
                 <HStack {...getCourseRootProps()}>
                   {courses.map((course) => {
                     const radio = getCourseRadioProps({ value: course.id })
@@ -168,10 +168,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
 
             <Flex>
               <MarkCardContainer
-                border="markCard.green.container.border"
-                bg="markCard.green.container.bg"
+                border="markCard.blue.container.border"
+                bg="markCard.blue.container.bg"
               >
-                <MarkCardLabel bg="markCard.green.label">レース</MarkCardLabel>
+                <MarkCardLabel bg="markCard.blue.label">レース</MarkCardLabel>
                 <Grid
                   templateColumns="repeat(6, 20px)"
                   templateRows="repeat(2, 1fr)"
@@ -193,10 +193,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
           <Flex mb={2} width="100%" justifyContent="space-between">
             <Flex mr={2}>
               <MarkCardContainer
-                border="markCard.green.container.border"
-                bg="markCard.green.container.bg"
+                border="markCard.blue.container.border"
+                bg="markCard.blue.container.bg"
               >
-                <MarkCardLabel bg="markCard.green.label">馬番</MarkCardLabel>
+                <MarkCardLabel bg="markCard.blue.label">馬番</MarkCardLabel>
                 <Box>
                   <Grid
                     templateColumns="repeat(9, 20px)"
@@ -220,10 +220,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
             </Flex>
             <Flex mr={2}>
               <MarkCardContainer
-                border="markCard.green.container.border"
-                bg="markCard.green.container.bg"
+                border="markCard.blue.container.border"
+                bg="markCard.blue.container.bg"
               >
-                <MarkCardLabel bg="markCard.green.label">式別</MarkCardLabel>
+                <MarkCardLabel bg="markCard.blue.label">式別</MarkCardLabel>
                 <HStack {...getBettingTypeRootProps()}>
                   {BET_TYPES.map((bet) => {
                     const radio = getBettingTypeRadioProps({ value: bet.type })
@@ -238,10 +238,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
             </Flex>
             <Flex>
               <MarkCardContainer
-                border="markCard.green.container.border"
-                bg="markCard.green.container.bg"
+                border="markCard.blue.container.border"
+                bg="markCard.blue.container.bg"
               >
-                <MarkCardLabel bg="markCard.green.label">自信度</MarkCardLabel>
+                <MarkCardLabel bg="markCard.blue.label">自信度</MarkCardLabel>
                 <Box>
                   <Grid
                     templateColumns="repeat(4, 20px)"
@@ -266,8 +266,8 @@ const MarkCard: React.FC<MarkCardProps> = ({
           </Flex>
           <BettingComment
             setComment={setComment}
-            border="markCard.green.container.border"
-            bg="markCard.green.container.bg"
+            border="markCard.blue.container.border"
+            bg="markCard.blue.container.bg"
           />
           <Button
             onClick={() =>
@@ -303,17 +303,17 @@ const MarkCard: React.FC<MarkCardProps> = ({
               race === undefined ||
               horseNo === undefined
             }
-            bg="markCard.green.container.bg"
-            borderColor="markCard.green.container.border"
+            bg="markCard.blue.container.bg"
+            borderColor="markCard.blue.container.border"
             borderWidth="2px"
             _hover={{
-              bg: 'markCard.green.container.border'
+              bg: 'markCard.blue.container.border'
             }}
             _focus={{
-              bg: 'markCard.green.container.border'
+              bg: 'markCard.blue.container.border'
             }}
             _active={{
-              bg: 'markCard.green.container.border'
+              bg: 'markCard.blue.container.border'
             }}
           >
             投票する
@@ -323,91 +323,91 @@ const MarkCard: React.FC<MarkCardProps> = ({
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
           <Box
             w="8px"
             h="15px"
-            bg="markCard.green.barcode"
+            bg="markCard.blue.barcode"
             borderRadius="2px 2px 0 0"
           />
         </HStack>
@@ -416,4 +416,4 @@ const MarkCard: React.FC<MarkCardProps> = ({
   )
 }
 
-export default MarkCard
+export default WheelMarkCard
