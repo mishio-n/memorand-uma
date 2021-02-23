@@ -15,7 +15,7 @@ class MyDocument extends NextDocument {
   render() {
     return (
       <Html lang="ja">
-        <Head />
+        <Head title="Memorand Uma" />
         <body>
           <Main />
           <NextScript />

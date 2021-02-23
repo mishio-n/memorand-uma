@@ -11,11 +11,13 @@ import { useSession } from 'next-auth/client'
 import { useState } from 'react'
 import { BettingHorse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
-import BettingComment from './BettingComment'
-import Container from './Container'
-import Label from './Label'
-import NormalRadio from './NormalRadio'
-import NumberRadio from './NumberRadio'
+import {
+  MarkCardContainer,
+  MarkCardLabel,
+  NormalRadio,
+  BettingComment,
+  NumberRadio
+} from '~/components/MarkCardItems'
 
 const HORSE_NUM = [
   1,
@@ -137,7 +139,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
   return (
     <>
       <Box
-        background="markCard.bg"
+        background="markCard.green.bg"
         borderRadius="5px 5px 0 0"
         p={5}
         pb={0}
@@ -146,8 +148,11 @@ const MarkCard: React.FC<MarkCardProps> = ({
         <Flex direction="column">
           <Flex mb={2}>
             <Flex mr={2}>
-              <Container>
-                <Label>場名</Label>
+              <MarkCardContainer
+                border="markCard.green.container.border"
+                bg="markCard.green.container.bg"
+              >
+                <MarkCardLabel bg="markCard.green.label">場名</MarkCardLabel>
                 <HStack {...getCourseRootProps()}>
                   {courses.map((course) => {
                     const radio = getCourseRadioProps({ value: course.id })
@@ -158,12 +163,15 @@ const MarkCard: React.FC<MarkCardProps> = ({
                     )
                   })}
                 </HStack>
-              </Container>
+              </MarkCardContainer>
             </Flex>
 
             <Flex>
-              <Container>
-                <Label>レース</Label>
+              <MarkCardContainer
+                border="markCard.green.container.border"
+                bg="markCard.green.container.bg"
+              >
+                <MarkCardLabel bg="markCard.green.label">レース</MarkCardLabel>
                 <Grid
                   templateColumns="repeat(6, 20px)"
                   templateRows="repeat(2, 1fr)"
@@ -179,13 +187,16 @@ const MarkCard: React.FC<MarkCardProps> = ({
                     )
                   })}
                 </Grid>
-              </Container>
+              </MarkCardContainer>
             </Flex>
           </Flex>
           <Flex mb={2} width="100%" justifyContent="space-between">
             <Flex mr={2}>
-              <Container>
-                <Label>馬番</Label>
+              <MarkCardContainer
+                border="markCard.green.container.border"
+                bg="markCard.green.container.bg"
+              >
+                <MarkCardLabel bg="markCard.green.label">馬番</MarkCardLabel>
                 <Box>
                   <Grid
                     templateColumns="repeat(9, 20px)"
@@ -205,11 +216,14 @@ const MarkCard: React.FC<MarkCardProps> = ({
                     })}
                   </Grid>
                 </Box>
-              </Container>
+              </MarkCardContainer>
             </Flex>
             <Flex mr={2}>
-              <Container>
-                <Label>式別</Label>
+              <MarkCardContainer
+                border="markCard.green.container.border"
+                bg="markCard.green.container.bg"
+              >
+                <MarkCardLabel bg="markCard.green.label">式別</MarkCardLabel>
                 <HStack {...getBettingTypeRootProps()}>
                   {BET_TYPES.map((bet) => {
                     const radio = getBettingTypeRadioProps({ value: bet.type })
@@ -220,11 +234,14 @@ const MarkCard: React.FC<MarkCardProps> = ({
                     )
                   })}
                 </HStack>
-              </Container>
+              </MarkCardContainer>
             </Flex>
             <Flex>
-              <Container>
-                <Label>自信度</Label>
+              <MarkCardContainer
+                border="markCard.green.container.border"
+                bg="markCard.green.container.bg"
+              >
+                <MarkCardLabel bg="markCard.green.label">自信度</MarkCardLabel>
                 <Box>
                   <Grid
                     templateColumns="repeat(4, 20px)"
@@ -244,10 +261,14 @@ const MarkCard: React.FC<MarkCardProps> = ({
                     })}
                   </Grid>
                 </Box>
-              </Container>
+              </MarkCardContainer>
             </Flex>
           </Flex>
-          <BettingComment setComment={setComment} />
+          <BettingComment
+            setComment={setComment}
+            border="markCard.green.container.border"
+            bg="markCard.green.container.bg"
+          />
           <Button
             onClick={() =>
               // ボタン押下可能時はnon-nullが保証できる
@@ -282,17 +303,17 @@ const MarkCard: React.FC<MarkCardProps> = ({
               race === undefined ||
               horseNo === undefined
             }
-            bg="markCard.containerBg"
-            borderColor="markCard.containerBorder"
+            bg="markCard.green.container.bg"
+            borderColor="markCard.green.container.border"
             borderWidth="2px"
             _hover={{
-              bg: 'markCard.containerBorder'
+              bg: 'markCard.green.container.border'
             }}
             _focus={{
-              bg: 'markCard.containerBorder'
+              bg: 'markCard.green.container.border'
             }}
             _active={{
-              bg: 'markCard.containerBorder'
+              bg: 'markCard.green.container.border'
             }}
           >
             投票する

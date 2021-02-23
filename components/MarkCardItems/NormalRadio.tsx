@@ -2,7 +2,7 @@ import { Box, Flex, useRadio, UseRadioProps } from '@chakra-ui/react'
 
 type NormalRadioProps = UseRadioProps
 
-const NormalRadio: React.FC<NormalRadioProps> = (props) => {
+export const NormalRadio: React.FC<NormalRadioProps> = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
@@ -37,5 +37,3 @@ const NormalRadio: React.FC<NormalRadioProps> = (props) => {
     </Box>
   )
 }
-
-export default NormalRadio

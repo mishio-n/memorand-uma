@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { MdAdd } from 'react-icons/md'
 import { RaceCourse } from '~/server/types'
-import MarkCard from './MarkCard'
+import NormalMarkCard from './NormalMarkCard'
 
 type BettingButtonProps = {
   courses: RaceCourse[]
@@ -36,7 +36,7 @@ const BettingButton: React.FC<BettingButtonProps> = (props) => {
         <ModalOverlay />
         <ModalContent>
           <ModalBody background="markCard.bg" borderRadius="5px 5px 0 0">
-            <MarkCard {...props} onClose={onClose} />
+            <NormalMarkCard {...props} onClose={onClose} />
           </ModalBody>
           <ModalFooter
             py={0}

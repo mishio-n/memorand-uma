@@ -2,7 +2,7 @@ import { Box, Flex, useRadio, UseRadioProps } from '@chakra-ui/react'
 
 type NumberRadioProps = UseRadioProps
 
-const NumberRadio: React.FC<NumberRadioProps> = (props) => {
+export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
@@ -61,5 +61,3 @@ const NumberRadio: React.FC<NumberRadioProps> = (props) => {
     </Box>
   )
 }
-
-export default NumberRadio

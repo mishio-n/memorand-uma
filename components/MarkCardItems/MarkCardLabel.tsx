@@ -1,10 +1,14 @@
 import { Box } from '@chakra-ui/react'
 
-const Label: React.FC = ({ children }) => (
+type MarkCardLabel = {
+  bg: string
+}
+
+export const MarkCardLabel: React.FC<MarkCardLabel> = ({ bg, children }) => (
   <Box
     display="inline-block"
     color="white"
-    backgroundColor="rgba(0,12,28,1.0)"
+    backgroundColor={bg}
     borderRadius="16px"
     height="16px"
     padding="0 14px"
@@ -15,5 +19,3 @@ const Label: React.FC = ({ children }) => (
     {children}
   </Box>
 )
-
-export default Label

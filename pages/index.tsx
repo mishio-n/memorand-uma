@@ -4,7 +4,7 @@ import utc from 'dayjs/plugin/utc'
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import Loading from '~/components/Loading'
-import MarkCard from '~/components/MarkCard'
+import NormalMarkCard from '~/components/NormalMarkCard'
 import RaceList from '~/components/RaceList'
 import { BettingData, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
@@ -80,7 +80,7 @@ const Home = () => {
           </Text>
         </Flex>
         {/* <BettingButton courses={courses} date={date} fetcher={fetchBettings} /> */}
-        <MarkCard
+        <NormalMarkCard
           courses={courses}
           date={date}
           fetcher={fetchBettings}
