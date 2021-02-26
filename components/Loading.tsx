@@ -1,13 +1,9 @@
-import { Spinner } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 
 const Loading: React.FC = () => (
-  <Spinner
-    thickness="4px"
-    speed="0.65s"
-    emptyColor="gray.200"
-    color="blue.500"
-    size="xl"
-  />
+  <Flex p={10} px={20} justifyContent="center" alignItems="center">
+    <img src="/horse.gif" alt="loading..." />
+    <Text size="xl">Loading...</Text>
+  </Flex>
 )
-
 export default Loading
