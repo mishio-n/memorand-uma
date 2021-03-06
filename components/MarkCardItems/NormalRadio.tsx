@@ -9,7 +9,7 @@ export const NormalRadio: React.FC<NormalRadioProps> = (props) => {
   const checkbox = getCheckboxProps()
 
   return (
-    <Box as="label">
+    <Box as="label" w="100%" pb={2}>
       <input {...input} />
       <Flex
         key={`course-number-${props.children}`}
@@ -17,10 +17,9 @@ export const NormalRadio: React.FC<NormalRadioProps> = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box textAlign="center" w="10px" fontSize="xs" fontWeight="900">
+        <Box textAlign="center" w="10px" fontSize="xs" fontWeight="900" pb={2}>
           {props.children}
         </Box>
-
         <Box
           w="10px"
           h="30px"

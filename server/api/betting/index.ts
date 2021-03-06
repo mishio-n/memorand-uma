@@ -1,4 +1,4 @@
-import { BettingData, BettingForm } from '$/types'
+import { BettingForm, BettingResponse } from '$/types'
 import { Betting } from '@prisma/client'
 
 export type Methods = {
@@ -6,7 +6,7 @@ export type Methods = {
     query: {
       date: string
     }
-    resBody: BettingData[]
+    resBody: BettingResponse[]
   }
   post: {
     query: {

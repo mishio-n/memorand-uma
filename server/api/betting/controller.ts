@@ -30,7 +30,9 @@ export default defineController(() => ({
         comment: body.comment,
         courseId: query.courseId,
         confidence: body.confidence,
-        horses: body.horses
+        horses: body.horses,
+        betType: body.betType,
+        markCardType: body.markCardtype
       })
 
       return { status: 200, body: newBetting }

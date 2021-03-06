@@ -1,12 +1,11 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import { BettingData, RaceCourse } from '~/server/types'
+import { BettingResponse, RaceCourse } from '~/server/types'
+import { RACE_NUM } from '~/utils/mark-card-constants'
 import RaceItem from './RaceItem'
-
-const RACE_NUM = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 type RaceListProps = {
   raceCourses: RaceCourse[]
-  bettings: BettingData[]
+  bettings: BettingResponse[]
 }
 
 const RaceList: React.FC<RaceListProps> = ({ raceCourses, bettings }) => {

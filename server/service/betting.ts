@@ -25,11 +25,16 @@ export const createBetting = async (
       comment: formData.comment,
       race: formData.race,
       confidence: formData.confidence,
+      betType: formData.betType,
+      markCardType: formData.markCardtype,
       user: {
         connect: { id: userId }
       },
       horse: {
-        create: formData.horses
+        create: formData.horses.map((horse) => ({
+          number: horse.number,
+          column: horse.column
+        }))
       }
     }
   })

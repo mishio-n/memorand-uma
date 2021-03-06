@@ -1,10 +1,10 @@
-import { BettingHorse } from '$/types'
+import { Horse } from '@prisma/client'
 
 export type Methods = {
   get: {
     query: {
       bettingId: number
     }
-    resBody: BettingHorse[]
+    resBody: Horse[]
   }
 }

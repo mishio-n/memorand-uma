@@ -9,30 +9,43 @@ generator client {
 }
 
 model Betting {
-  id         Int     @id @default(autoincrement())
-  user       User    @relation(fields: [userId], references: [id])
-  userId     Int
-  courseId   String
-  date       String
-  race       Int
-  horse      Horse[]
-  comment    String //@db.LongText
-  confidence Int     @default(1)
+  id           Int          @id @default(autoincrement())
+  user         User         @relation(fields: [userId], references: [id])
+  userId       Int
+  courseId     String
+  date         String
+  race         Int
+  betType      BetType
+  markCardType MarkCardType
+  horse        Horse[]
+  comment      String //@db.LongText
+  confidence   Int          @default(1)
 }
 
 model Horse {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   number    Int
-  type      BetType  @default(WIN)
-  // betting   Betting @relation(fields: [bettingId], references: [id])
-  // bettingId Int
-  Betting   Betting? @relation(fields: [bettingId], references: [id])
-  bettingId Int?
+  betting   Betting @relation(fields: [bettingId], references: [id])
+  bettingId Int
+  column   Int
 }
 
 enum BetType {
   WIN
   PLACE
+  QUINELLA_PLACE
+  BRACKET_QUINELLA
+  QUINELLA
+  EXACTA
+  TRIO
+  TRIFECTA
+}
+
+enum MarkCardType {
+  NORMAL
+  WHEEL
+  BOX
+  FORMATION
 }
 
 model Account {

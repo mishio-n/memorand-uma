@@ -1,6 +1,8 @@
 import { Box, Flex, useRadio, UseRadioProps } from '@chakra-ui/react'
 
-type NumberRadioProps = UseRadioProps
+type NumberRadioProps = UseRadioProps & {
+  disabled: boolean
+}
 
 export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
@@ -9,7 +11,7 @@ export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
   const checkbox = getCheckboxProps()
 
   return (
-    <Box as="label">
+    <Box as="label" pb={2}>
       <input {...input} />
       <Flex
         key={`number-${props.children}`}
@@ -20,14 +22,14 @@ export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
         <svg width="10px" height="5px">
           <path
             d="M 1 4 C 1 0, 9, 0, 9 4"
-            stroke="rgb(250,125,40)"
+            stroke={props.disabled ? 'rgb(180,180,200)' : 'rgb(250,125,40)'}
             fill="transparent"
             strokeWidth="2px"
           />
         </svg>
         <Box
           textAlign="center"
-          color="rgb(250,125,40)"
+          color={props.disabled ? 'rgb(180,180,200)' : 'rgb(250,125,40)'}
           fontWeight={700}
           position="relative"
         >
@@ -52,7 +54,7 @@ export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
         <svg width="10px" height="5px">
           <path
             d="M 1 0 C 1 4, 9, 4, 9 0"
-            stroke="rgb(250,125,40)"
+            stroke={props.disabled ? 'rgb(180,180,200)' : 'rgb(250,125,40)'}
             fill="transparent"
             strokeWidth="2px"
           />

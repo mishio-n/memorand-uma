@@ -8,27 +8,9 @@ import Loading from '~/components/Loading'
 import NormalMarkCard from '~/components/NormalMarkCard'
 import RaceList from '~/components/RaceList'
 import WheelMarkCard from '~/components/WheelMarkCard'
-import { BettingData, RaceCourse } from '~/server/types'
+import { BettingResponse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
-
-const dayJP = (day: number) => {
-  switch (day) {
-    case 0:
-      return '日'
-    case 1:
-      return '月'
-    case 2:
-      return '火'
-    case 3:
-      return '水'
-    case 4:
-      return '木'
-    case 5:
-      return '金'
-    case 6:
-      return '土'
-  }
-}
+import { dayJP } from '~/utils/day-jp'
 
 const Home = () => {
   const [session] = useSession()
@@ -46,12 +28,13 @@ const Home = () => {
     })()
   }, [])
 
-  const [bettings, setBettings] = useState<BettingData[]>([])
+  const [bettings, setBettings] = useState<BettingResponse[]>([])
   // 子コンポーネントでフェッチさせるため関数を外出しする
   const fetchBettings = async () => {
     const { body } = await apiClient.betting.get({
       query: { date }
     })
+
     setBettings(body)
   }
   useEffect(() => {
@@ -61,14 +44,14 @@ const Home = () => {
   if (!courses) return <Loading />
   return (
     <>
-      <Flex alignItems="center" direction="column">
+      <Flex alignItems="start" direction="column" overflowX="scroll">
         {!session && (
           <Alert status="warning" justifyContent="center">
             <AlertIcon />
             予想を入力するにはサインインしてください
           </Alert>
         )}
-        <Flex alignItems="center" p={8}>
+        <Flex alignItems="center" p={5}>
           <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
             {today.format('YYYY年MM月DD日')}
           </Text>
@@ -91,7 +74,7 @@ const Home = () => {
               console.log('close')
             }}
           />
-          <FormationMarkCard
+          {/* <FormationMarkCard
             courses={courses}
             date={date}
             fetcher={fetchBettings}
@@ -106,7 +89,7 @@ const Home = () => {
             onClose={() => {
               console.log('close')
             }}
-          />
+          /> */}
         </Flex>
         <Box width="90%" mt={4}>
           <RaceList raceCourses={courses} bettings={bettings} />

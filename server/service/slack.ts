@@ -1,5 +1,5 @@
 import { BettingHorse } from '$/types'
-import { BetType, PrismaClient } from '@prisma/client'
+import { BetType, MarkCardType, PrismaClient } from '@prisma/client'
 import { WebClient } from '@slack/web-api'
 import { APP_URL, SLACK_CHANNEL, SLACK_TOKEN } from './envValues'
 import { getRaceCourses } from './race-corse'
@@ -11,6 +11,8 @@ type NotificationParams = {
   courseId: string
   confidence: number
   horses: BettingHorse[]
+  betType: BetType
+  markCardType: MarkCardType
 }
 
 const slack = new WebClient(SLACK_TOKEN)
@@ -18,7 +20,75 @@ const prisma = new PrismaClient()
 
 const BET_TYPE_TABLE: Record<BetType, string> = {
   WIN: '単勝',
-  PLACE: '複勝'
+  PLACE: '複勝',
+  QUINELLA_PLACE: 'ワイド',
+  BRACKET_QUINELLA: '枠連',
+  QUINELLA: '馬連',
+  EXACTA: '馬単',
+  TRIO: '3連複',
+  TRIFECTA: '3連単'
+}
+
+const buildBettingFields = (
+  horses: BettingHorse[],
+  betType: BetType,
+  marcCardtype: MarkCardType
+): { title: string; value: string; short: boolean } => {
+  const title = BET_TYPE_TABLE[betType]
+  const column1: number[] = []
+  const column2: number[] = []
+  const column3: number[] = []
+  horses.forEach((horse) => {
+    switch (horse.column) {
+      case 1:
+        column1.push(horse.number)
+        break
+      case 2:
+        column2.push(horse.number)
+        break
+      case 3:
+        column3.push(horse.number)
+        break
+      default:
+        break
+    }
+  })
+
+  const value = (() => {
+    switch (marcCardtype) {
+      case 'BOX':
+        return `ボックス: ${column1.join(',')}`
+      case 'WHEEL':
+        return `流し: ${column1.join(',')} => ${column2.join(',')} ${
+          column3.length === 0 ? '' : `=> ${column3.join(',')}`
+        }`
+      case 'FORMATION':
+        return `フォーメーション: ${column1.join(',')} => ${column2.join(
+          ','
+        )} ${column3.length === 0 ? '' : `=> ${column3.join(',')}`}`
+      case 'NORMAL':
+        switch (betType) {
+          case 'WIN':
+            return `${column1[0]}`
+          case 'PLACE':
+            return `${column1[0]}`
+          case 'QUINELLA_PLACE':
+          case 'BRACKET_QUINELLA':
+          case 'QUINELLA':
+          case 'EXACTA':
+            return `${column1[0]} => ${column2[0]}`
+          case 'TRIO':
+          case 'TRIFECTA':
+            return `${column1[0]} => ${column2[0]} => ${column2[0]}`
+        }
+    }
+  })()
+
+  return {
+    title,
+    value,
+    short: true
+  }
 }
 
 /**
@@ -57,7 +127,9 @@ export const notifyNewBetting = async ({
   comment,
   courseId,
   confidence,
-  horses
+  horses,
+  betType,
+  markCardType
 }: NotificationParams) => {
   const user = await prisma.user.findUnique({ where: { id: userId } })
   if (!user) {
@@ -83,11 +155,7 @@ export const notifyNewBetting = async ({
             ? ''
             : `\n -------------------- \n ${comment} \n -------------------- \n`
         }`,
-        fields: horses.map((horse, i) => ({
-          title: `${i + 1} 頭目`,
-          value: `${BET_TYPE_TABLE[horse.type]}: ${horse.number}番`,
-          short: true
-        })),
+        fields: [buildBettingFields(horses, betType, markCardType)],
         footer: APP_URL
       }
     ]
