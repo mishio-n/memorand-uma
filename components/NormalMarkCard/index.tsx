@@ -51,8 +51,21 @@ const MarkCard: React.FC<MarkCardProps> = ({
   const [column2, setColumn2] = useState<BettingHorse>()
   const [column3, setColumn3] = useState<BettingHorse>()
   const [betType, setBetType] = useState<BetType>('WIN')
-  const [confidence, setConfidence] = useState<number>(1)
+  const [confidence, setConfidence] = useState<number>()
   const [comment, setComment] = useState('')
+
+  const clearRadioButtonChecked = () => {
+    setColumn1(undefined)
+    setColumn2(undefined)
+    setColumn3(undefined)
+    setConfidence(undefined)
+    const radios = Array.from(
+      document.getElementsByClassName('radio')
+    ) as HTMLElement[]
+    radios
+      .filter((element) => element.dataset.checked !== undefined)
+      .forEach((element) => element.removeAttribute('data-checked'))
+  }
 
   // radio
   const {
@@ -69,9 +82,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
   } = useRadioGroup({
     name: 'bettingType',
     onChange: (nextValue: BetType) => {
-      setColumn1(undefined)
-      setColumn2(undefined)
-      setColumn3(undefined)
+      clearRadioButtonChecked()
       setBetType(nextValue)
     }
   })
@@ -116,7 +127,6 @@ const MarkCard: React.FC<MarkCardProps> = ({
     getRadioProps: getConfidenceRadioProps
   } = useRadioGroup({
     name: 'confidence',
-    defaultValue: '1',
     onChange: (nextValue: number) => setConfidence(nextValue)
   })
 
@@ -159,7 +169,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                   {courses.map((course) => {
                     const radio = getCourseRadioProps({ value: course.id })
                     return (
-                      <NormalRadio key={course.id} {...radio}>
+                      <NormalRadio key={course.id} {...radio} clearable={false}>
                         {course.course}
                       </NormalRadio>
                     )
@@ -187,6 +197,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                         key={`race-${num}`}
                         {...radio}
                         disabled={false}
+                        clearable={false}
                       >
                         {num}
                       </NumberRadio>
@@ -205,7 +216,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                   {BET_TYPES.map((bet) => {
                     const radio = getBettingTypeRadioProps({ value: bet.type })
                     return (
-                      <NormalRadio key={bet.type} {...radio}>
+                      <NormalRadio key={bet.type} {...radio} clearable={false}>
                         <VStack
                           justifyContent="center"
                           spacing={bet.name.length === 2 ? '20px' : '0px'}
@@ -244,6 +255,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                           key={`confidence-${num}-1`}
                           {...radio}
                           disabled={false}
+                          clearable
                         >
                           {num}
                         </NumberRadio>
@@ -278,6 +290,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                           key={`horse-${num}-1`}
                           {...radio}
                           disabled={false}
+                          clearable
                         >
                           {num}
                         </NumberRadio>
@@ -314,6 +327,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                           key={`horse-${num}-1`}
                           {...radio}
                           disabled={betType === 'WIN' || betType === 'PLACE'}
+                          clearable
                         >
                           {num}
                         </NumberRadio>
@@ -368,6 +382,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                             betType === 'QUINELLA_PLACE' ||
                             betType === 'EXACTA'
                           }
+                          clearable
                         >
                           {num}
                         </NumberRadio>
@@ -391,7 +406,8 @@ const MarkCard: React.FC<MarkCardProps> = ({
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   race: +race!,
                   comment,
-                  confidence: +confidence,
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                  confidence: +confidence!,
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   horses: [column1, column2, column3].filter(
                     (horse) => horse !== undefined
@@ -408,9 +424,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                 }
               ).then(() => {
                 // モーダルクローズ時にデータを再取得する
-                setColumn1(undefined)
-                setColumn2(undefined)
-                setColumn3(undefined)
+                clearRadioButtonChecked()
                 fetcher()
                 onClose()
               })
@@ -418,6 +432,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
             mt={2}
             mx={40}
             isDisabled={
+              confidence === undefined ||
               session === undefined ||
               session === null ||
               courseId === undefined ||

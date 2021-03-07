@@ -2,6 +2,7 @@ import { Box, Flex, useRadio, UseRadioProps } from '@chakra-ui/react'
 
 type NumberRadioProps = UseRadioProps & {
   disabled: boolean
+  clearable: boolean
 }
 
 export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
@@ -35,6 +36,7 @@ export const NumberRadio: React.FC<NumberRadioProps> = (props) => {
         >
           {props.children}
           <Box
+            className={props.clearable ? 'radio' : ''}
             {...checkbox}
             position="absolute"
             m="auto"

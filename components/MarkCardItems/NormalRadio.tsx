@@ -1,6 +1,8 @@
 import { Box, Flex, useRadio, UseRadioProps } from '@chakra-ui/react'
 
-type NormalRadioProps = UseRadioProps
+type NormalRadioProps = UseRadioProps & {
+  clearable: boolean
+}
 
 export const NormalRadio: React.FC<NormalRadioProps> = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
@@ -21,6 +23,7 @@ export const NormalRadio: React.FC<NormalRadioProps> = (props) => {
           {props.children}
         </Box>
         <Box
+          className={props.clearable ? 'radio' : ''}
           w="10px"
           h="30px"
           borderRadius="10px"
