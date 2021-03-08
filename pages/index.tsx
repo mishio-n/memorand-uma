@@ -52,7 +52,7 @@ const Home = () => {
             予想を入力するにはサインインしてください
           </Alert>
         )}
-        {(!isSmartPhone || orientation !== 'landscape-primary') && (
+        {!isSmartPhone && orientation !== 'landscape-secondary' && (
           <Flex alignItems="center" py={5}>
             <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
               {today.format('YYYY年MM月DD日')}
@@ -96,7 +96,7 @@ const Home = () => {
           /> */}
           </Flex>
         )}
-        {(!isSmartPhone || orientation !== 'landscape-primary') && (
+        {!isSmartPhone && orientation !== 'landscape-secondary' && (
           <Box width="90%" mt={4}>
             <RaceList raceCourses={courses} bettings={bettings} />
           </Box>

@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   console.log(orientation)
   return (
     <>
-      {(!isSmartPhone || orientation !== 'landscape-primary') && (
+      {!isSmartPhone && orientation !== 'landscape-secondary' && (
         <Flex
           as="nav"
           align="center"
