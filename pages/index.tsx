@@ -9,7 +9,6 @@ import RaceList from '~/components/RaceList'
 import { BettingResponse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
 import { dayJP } from '~/utils/day-jp'
-import { isSmartPhone } from '~/utils/is-smartPhone'
 import { useScreenOrientation } from '~/utils/orientation-hook'
 
 const Home = () => {
@@ -52,7 +51,8 @@ const Home = () => {
             予想を入力するにはサインインしてください
           </Alert>
         )}
-        {!isSmartPhone && orientation !== 'landscape-secondary' && (
+        {(orientation === 'landscape-primary' ||
+          orientation === 'portrait-primary') && (
           <Flex alignItems="center" py={5}>
             <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
               {today.format('YYYY年MM月DD日')}
@@ -68,7 +68,8 @@ const Home = () => {
           </Flex>
         )}
         {/* <BettingButton courses={courses} date={date} fetcher={fetchBettings} /> */}
-        {!isSmartPhone && orientation === 'landscape-primary' && (
+        {(orientation === 'landscape-primary' ||
+          orientation === 'landscape-secondary') && (
           <Flex>
             <NormalMarkCard
               courses={courses}
@@ -96,7 +97,8 @@ const Home = () => {
           /> */}
           </Flex>
         )}
-        {!isSmartPhone && orientation !== 'landscape-secondary' && (
+        {(orientation === 'landscape-primary' ||
+          orientation === 'portrait-primary') && (
           <Box width="90%" mt={4}>
             <RaceList raceCourses={courses} bettings={bettings} />
           </Box>

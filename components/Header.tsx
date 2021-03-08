@@ -1,5 +1,4 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
-import { isSmartPhone } from '~/utils/is-smartPhone'
 import { useScreenOrientation } from '~/utils/orientation-hook'
 import HeaderItem from './HeaderItem'
 import UserBanner from './UserBanner'
@@ -9,7 +8,8 @@ const Header: React.FC = () => {
   console.log(orientation)
   return (
     <>
-      {!isSmartPhone && orientation !== 'landscape-secondary' && (
+      {(orientation === 'landscape-primary' ||
+        orientation === 'portrait-primary') && (
         <Flex
           as="nav"
           align="center"
