@@ -16,6 +16,10 @@ class MyDocument extends NextDocument {
     return (
       <Html lang="ja">
         <Head title="Memorand Uma" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1.0,user-scalable=yes"
+        />
         <body>
           <Main />
           <NextScript />

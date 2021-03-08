@@ -3,14 +3,14 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
-import FormationMarkCard from '~/components/FormationMarkCard'
 import Loading from '~/components/Loading'
 import NormalMarkCard from '~/components/NormalMarkCard'
 import RaceList from '~/components/RaceList'
-import WheelMarkCard from '~/components/WheelMarkCard'
 import { BettingResponse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
 import { dayJP } from '~/utils/day-jp'
+import { isSmartPhone } from '~/utils/is-smartPhone'
+import { useScreenOrientation } from '~/utils/orientation-hook'
 
 const Home = () => {
   const [session] = useSession()
@@ -28,6 +28,7 @@ const Home = () => {
     })()
   }, [])
 
+  const orientation = useScreenOrientation()
   const [bettings, setBettings] = useState<BettingResponse[]>([])
   // 子コンポーネントでフェッチさせるため関数を外出しする
   const fetchBettings = async () => {
@@ -44,37 +45,40 @@ const Home = () => {
   if (!courses) return <Loading />
   return (
     <>
-      <Flex alignItems="start" direction="column" overflowX="scroll">
+      <Flex alignItems="center" direction="column">
         {!session && (
           <Alert status="warning" justifyContent="center">
             <AlertIcon />
             予想を入力するにはサインインしてください
           </Alert>
         )}
-        <Flex alignItems="center" p={5}>
-          <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
-            {today.format('YYYY年MM月DD日')}
-          </Text>
-          <Text
-            fontSize="3xl"
-            textColor={
-              day === 0 ? 'tomato' : day === 6 ? 'cyan.700' : 'glay.500'
-            }
-          >
-            ({dayJP(day)})
-          </Text>
-        </Flex>
+        {(!isSmartPhone || orientation !== 'landscape-primary') && (
+          <Flex alignItems="center" py={5}>
+            <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
+              {today.format('YYYY年MM月DD日')}
+            </Text>
+            <Text
+              fontSize="3xl"
+              textColor={
+                day === 0 ? 'tomato' : day === 6 ? 'cyan.700' : 'glay.500'
+              }
+            >
+              ({dayJP(day)})
+            </Text>
+          </Flex>
+        )}
         {/* <BettingButton courses={courses} date={date} fetcher={fetchBettings} /> */}
-        <Flex>
-          <NormalMarkCard
-            courses={courses}
-            date={date}
-            fetcher={fetchBettings}
-            onClose={() => {
-              console.log('close')
-            }}
-          />
-          {/* <FormationMarkCard
+        {!isSmartPhone && orientation === 'landscape-primary' && (
+          <Flex>
+            <NormalMarkCard
+              courses={courses}
+              date={date}
+              fetcher={fetchBettings}
+              onClose={() => {
+                console.log('close')
+              }}
+            />
+            {/* <FormationMarkCard
             courses={courses}
             date={date}
             fetcher={fetchBettings}
@@ -90,10 +94,13 @@ const Home = () => {
               console.log('close')
             }}
           /> */}
-        </Flex>
-        <Box width="90%" mt={4}>
-          <RaceList raceCourses={courses} bettings={bettings} />
-        </Box>
+          </Flex>
+        )}
+        {(!isSmartPhone || orientation !== 'landscape-primary') && (
+          <Box width="90%" mt={4}>
+            <RaceList raceCourses={courses} bettings={bettings} />
+          </Box>
+        )}
       </Flex>
     </>
   )
