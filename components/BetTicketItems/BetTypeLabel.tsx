@@ -1,6 +1,7 @@
 import { BetType } from '.prisma/client'
 import { Text, VStack } from '@chakra-ui/react'
 import { BET_TYPES } from 'utils/mark-card-constants'
+import { isSmartPhone } from '~/utils/is-smartPhone'
 
 type BetTtpeLabelProps = {
   type: BetType
@@ -18,13 +19,18 @@ export const BetTypeLabel: React.FC<BetTtpeLabelProps> = ({ type }) => {
       borderWidth="1px"
       borderStyle="solid"
       borderColor="gray.700"
-      width="50px"
+      width={isSmartPhone ? '30px' : '50px'}
       justifyContent="center"
       p={2}
       mr={4}
     >
       {labelText.map((text) => (
-        <Text fontSize="3xl" color="gray.700" fontWeight={900} key={text}>
+        <Text
+          fontSize={isSmartPhone ? 'xl' : '3xl'}
+          color="gray.700"
+          fontWeight={900}
+          key={text}
+        >
           {text}
         </Text>
       ))}

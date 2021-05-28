@@ -1,5 +1,6 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import { BettingData } from '~/server/types'
+import { isSmartPhone } from '~/utils/is-smartPhone'
 import { ColumnConnector } from './ColumnConnector'
 
 type BetContentProps = {
@@ -13,13 +14,13 @@ export const BetContent: React.FC<BetContentProps> = ({ betting }) => {
         <Flex alignItems="center" key={`column1-${num}`}>
           <Box
             bg="rgba(255, 255, 255, 0.0)"
-            w="40px"
-            h="40px"
+            w={isSmartPhone ? '35px' : '40px'}
+            h={isSmartPhone ? '35px' : '40px'}
             color="gray.700"
             fontWeight={400}
-            fontSize="3xl"
+            fontSize={isSmartPhone ? '2xl' : '3xl'}
             textAlign="center"
-            lineHeight="40px"
+            lineHeight={isSmartPhone ? '35px' : '40px'}
             borderStyle="solid"
             borderWidth="1px"
             borderColor="gray.700"
@@ -35,13 +36,13 @@ export const BetContent: React.FC<BetContentProps> = ({ betting }) => {
         <Flex alignItems="center" key={`column1-${num}`}>
           <Box
             bg="rgba(255, 255, 255, 0.0)"
-            w="40px"
-            h="40px"
+            w={isSmartPhone ? '35px' : '40px'}
+            h={isSmartPhone ? '35px' : '40px'}
             color="gray.700"
             fontWeight={400}
-            fontSize="3xl"
+            fontSize={isSmartPhone ? '2xl' : '3xl'}
             textAlign="center"
-            lineHeight="40px"
+            lineHeight={isSmartPhone ? '35px' : '40px'}
             borderStyle="solid"
             borderWidth="1px"
             borderColor="gray.700"
@@ -57,13 +58,13 @@ export const BetContent: React.FC<BetContentProps> = ({ betting }) => {
         <Flex alignItems="center" key={`column1-${num}`}>
           <Box
             bg="rgba(255, 255, 255, 0.0)"
-            w="40px"
-            h="40px"
+            w={isSmartPhone ? '35px' : '40px'}
+            h={isSmartPhone ? '35px' : '40px'}
             color="gray.700"
             fontWeight={400}
-            fontSize="3xl"
+            fontSize={isSmartPhone ? '2xl' : '3xl'}
             textAlign="center"
-            lineHeight="40px"
+            lineHeight={isSmartPhone ? '35px' : '40px'}
             borderStyle="solid"
             borderWidth="1px"
             borderColor="gray.700"

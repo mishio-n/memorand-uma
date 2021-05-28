@@ -1,5 +1,6 @@
 import { MarkCardType } from '.prisma/client'
 import { Box, Text } from '@chakra-ui/react'
+import { isSmartPhone } from '~/utils/is-smartPhone'
 import { MARK_CARD_TYPE_TABLE } from '~/utils/mark-card-constants'
 
 type MarkCardTypeLabelProps = {
@@ -19,7 +20,7 @@ export const MarkCardTypeLabel: React.FC<MarkCardTypeLabelProps> = ({
       : MARK_CARD_TYPE_TABLE[markCardtype]
   return (
     <Box borderWidth="1px" borderStyle="solid" borderColor="gray.700">
-      <Text size="3xl">{labelText}</Text>
+      <Text size={isSmartPhone ? 'xl' : '3xl'}>{labelText}</Text>
     </Box>
   )
 }

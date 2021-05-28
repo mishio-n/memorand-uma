@@ -10,7 +10,7 @@ export const MARK_CARD_TYPE_TABLE: Record<MarkCardType, string> = {
   FORMATION: 'フォーメーション'
 }
 
-export const BET_TYPES: { name: string; type: BetType }[] = [
+export const BET_TYPES = [
   {
     name: '単勝',
     type: 'WIN'
@@ -43,7 +43,34 @@ export const BET_TYPES: { name: string; type: BetType }[] = [
     name: '3連単',
     type: 'TRIFECTA'
   }
-]
+] as const
+
+export const COMBINATION_BET_TYPES = [
+  {
+    name: 'ワイド',
+    type: 'QUINELLA_PLACE'
+  },
+  {
+    name: '枠連',
+    type: 'BRACKET_QUINELLA'
+  },
+  {
+    name: '馬連',
+    type: 'QUINELLA'
+  },
+  {
+    name: '馬単',
+    type: 'EXACTA'
+  },
+  {
+    name: '3連複',
+    type: 'TRIO'
+  },
+  {
+    name: '3連単',
+    type: 'TRIFECTA'
+  }
+] as const
 
 export const HORSE_NUM = getSerialFromOne(18)
 

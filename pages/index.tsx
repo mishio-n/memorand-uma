@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import Loading from '~/components/Loading'
 import NormalMarkCard from '~/components/NormalMarkCard'
+import MarkCardSelector from '~/components/MarkCardSelector'
 import RaceList from '~/components/RaceList'
 import { BettingResponse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
@@ -52,7 +53,7 @@ const Home = () => {
             予想を入力するにはサインインしてください
           </Alert>
         )}
-        {((isSmartPhone && orientation === 'landscape-primary') ||
+        {((!isSmartPhone && orientation === 'landscape-primary') ||
           orientation === 'portrait-primary') && (
           <Flex alignItems="center" py={5}>
             <Text fontSize="4xl" color="glay.500" whiteSpace="nowrap">
@@ -72,6 +73,14 @@ const Home = () => {
         {(orientation === 'landscape-primary' ||
           orientation === 'landscape-secondary') && (
           <Flex>
+            <MarkCardSelector
+              courses={courses}
+              date={date}
+              fetcher={fetchBettings}
+              onClose={() => {
+                console.log('close')
+              }}
+            />
             <NormalMarkCard
               courses={courses}
               date={date}
@@ -98,7 +107,7 @@ const Home = () => {
           /> */}
           </Flex>
         )}
-        {((isSmartPhone && orientation === 'landscape-primary') ||
+        {((!isSmartPhone && orientation === 'landscape-primary') ||
           orientation === 'portrait-primary') && (
           <Box width="90%" mt={4}>
             <RaceList raceCourses={courses} bettings={bettings} />

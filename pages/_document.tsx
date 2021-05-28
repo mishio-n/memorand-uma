@@ -52,7 +52,6 @@ class MyDocument extends NextDocument {
         <meta name="theme-color" content="#000" />
         <meta name="description" content="this is myapp" />
         <link rel="icon" sizes="192x192" href="/icon-192x192.png" />
-        <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <body>
           <Main />

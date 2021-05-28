@@ -10,6 +10,7 @@ import {
 import { AiFillStar } from 'react-icons/ai'
 import { ImQrcode } from 'react-icons/im'
 import { BettingData } from '~/server/types'
+import { isSmartPhone } from '~/utils/is-smartPhone'
 import { BET_TYPES } from '~/utils/mark-card-constants'
 import { BetContent, BetTypeLabel, MarkCardTypeLabel } from '../BetTicketItems'
 
@@ -28,30 +29,34 @@ const BetTicket: React.FC<BetTicketProps> = ({ betting, course }) => (
       p={4}
     >
       <Flex direction="column" mr={4}>
-        <Text fontWeight={900} fontSize="4xl">
+        <Text fontWeight={900} fontSize={isSmartPhone ? 'xl' : '4xl'}>
           {course}
         </Text>
         <Flex alignItems="center" mb={4}>
           <Box
             bg="black"
-            w="50px"
-            h="50px"
+            w={isSmartPhone ? '30px' : '50px'}
+            h={isSmartPhone ? '30px' : '50px'}
             color="white"
             fontWeight={900}
-            fontSize="3xl"
+            fontSize={isSmartPhone ? 'md' : '3xl'}
             textAlign="center"
-            lineHeight="50px"
+            lineHeight={isSmartPhone ? '30px' : '50px'}
             mr={2}
           >
             {betting.race}
           </Box>
-          <Text fontWeight={900} fontSize="2xl" whiteSpace="nowrap">
+          <Text
+            fontWeight={900}
+            fontSize={isSmartPhone ? 'md' : '2xl'}
+            whiteSpace="nowrap"
+          >
             レース
           </Text>
         </Flex>
         <HStack spacing="10px" mb={4}>
-          <ImQrcode size="50px" />
-          <ImQrcode size="50px" />
+          <ImQrcode size={isSmartPhone ? '30px' : '50px'} />
+          <ImQrcode size={isSmartPhone ? '30px' : '50px'} />
         </HStack>
         <Text fontWeight={400} fontSize="md">
           by {betting.user.name}
