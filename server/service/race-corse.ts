@@ -16,6 +16,7 @@ type RaceCourseResponse = {
 export const getRaceCourses = async (): Promise<RaceCourse[]> => {
   const { data } = await axios.get<RaceCourseResponse>(RACECOURSE_API_URL, {
     params: {
+      // 開催中のみ取得
       filters: 'active[equals]true'
     },
     headers: {
@@ -24,6 +25,7 @@ export const getRaceCourses = async (): Promise<RaceCourse[]> => {
   })
 
   return data.contents.map(({ active, course, courseId, type }) => ({
+    // microCMSだと id フィールドが使用不可なので、ここで変換する
     id: courseId,
     course,
     active,
