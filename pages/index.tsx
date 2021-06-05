@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import Loading from '~/components/Loading'
 import NormalMarkCard from '~/components/NormalMarkCard'
-import MarkCardSelector from '~/components/MarkCardSelector'
+// import MarkCardSelector from '~/components/MarkCardSelector'
 import RaceList from '~/components/RaceList'
 import { BettingResponse, RaceCourse } from '~/server/types'
 import { apiClient } from '~/utils/apiClient'
@@ -73,14 +73,14 @@ const Home = () => {
         {(orientation === 'landscape-primary' ||
           orientation === 'landscape-secondary') && (
           <Flex>
-            <MarkCardSelector
+            {/* <MarkCardSelector
               courses={courses}
               date={date}
               fetcher={fetchBettings}
               onClose={() => {
                 console.log('close')
               }}
-            />
+            /> */}
             <NormalMarkCard
               courses={courses}
               date={date}

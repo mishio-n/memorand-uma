@@ -8,6 +8,8 @@ const API_ORIGIN = process.env.API_ORIGIN || 'http://localhost:8080'
 const SLACK_CHANNEL = process.env.SLACK_CHANNEL || ''
 const SLACK_TOKEN = process.env.SLACK_TOKEN || ''
 const APP_URL = process.env.APP_URL || 'http://localhost:3000'
+const RACECOURSE_API_URL = process.env.RACECOURSE_API_URL || ''
+const RACECOURSE_API_KEY = process.env.RACECOURSE_API_KEY || ''
 
 export {
   SERVER_PORT,
@@ -15,5 +17,7 @@ export {
   API_ORIGIN,
   SLACK_CHANNEL,
   SLACK_TOKEN,
-  APP_URL
+  APP_URL,
+  RACECOURSE_API_URL,
+  RACECOURSE_API_KEY
 }
