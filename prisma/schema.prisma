@@ -5,7 +5,6 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = ["nativeTypes"]
 }
 
 model Betting {
@@ -56,7 +55,7 @@ model Account {
   providerId         String
   providerAccountId  String
   refreshToken       String?
-  accessToken        String?
+  accessToken        String?   @db.LongText()
   accessTokenExpires DateTime?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @default(now())
