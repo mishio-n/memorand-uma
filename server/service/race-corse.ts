@@ -5,7 +5,7 @@ import { RACECOURSE_API_KEY, RACECOURSE_API_URL } from './envValues'
 // MicroCMS からの返却データ(必要パラメータのみ)
 type RaceCourseResponse = {
   contents: {
-    courseId: string
+    courseId: number
     course: string
     active: boolean
     type: RaceCourseType
@@ -26,7 +26,7 @@ export const getRaceCourses = async (): Promise<RaceCourse[]> => {
 
   return data.contents.map(({ active, course, courseId, type }) => ({
     // microCMSだと id フィールドが使用不可なので、ここで変換する
-    id: courseId,
+    id: courseId.toString(),
     course,
     active,
     type

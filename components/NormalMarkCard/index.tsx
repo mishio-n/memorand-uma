@@ -73,7 +73,10 @@ const MarkCard: React.FC<MarkCardProps> = ({
     getRadioProps: getCourseRadioProps
   } = useRadioGroup({
     name: 'course',
-    onChange: (nextValue: string) => setCourseId(nextValue)
+    onChange: (nextValue: string) => {
+      // clearRadioButtonChecked()
+      setCourseId(nextValue)
+    }
   })
 
   const {
@@ -167,7 +170,9 @@ const MarkCard: React.FC<MarkCardProps> = ({
                 <MarkCardLabel bg="markCard.green.label">場名</MarkCardLabel>
                 <HStack {...getCourseRootProps()}>
                   {courses.map((course) => {
-                    const radio = getCourseRadioProps({ value: course.id })
+                    const radio = getCourseRadioProps({
+                      value: course.id.toString()
+                    })
                     return (
                       <NormalRadio key={course.id} {...radio} clearable={false}>
                         {course.course}
@@ -418,7 +423,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                 {
                   date,
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  accessToken: session!.accessToken!,
+                  accessToken: session!.accessToken! as string,
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   courseId: courseId!
                 }
