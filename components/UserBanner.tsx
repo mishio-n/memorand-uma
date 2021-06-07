@@ -36,7 +36,7 @@ const UserBanner = () => {
           <MenuButton
             as={Button}
             leftIcon={
-              session.user.image ? (
+              session.user?.image ? (
                 <Box
                   backgroundImage={`url(${session.user.image})`}
                   w="32px"
@@ -57,7 +57,7 @@ const UserBanner = () => {
             _hover={{ backgroundColor: '$white.100' }}
             variant="ghost"
           >
-            <Text>{session.user.name}</Text>
+            <Text>{session.user?.name}</Text>
           </MenuButton>
           <MenuList>
             <MenuItem onClick={() => signOut()}>
