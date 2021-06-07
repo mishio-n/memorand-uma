@@ -418,7 +418,7 @@ const MarkCard: React.FC<MarkCardProps> = ({
                 {
                   date,
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  accessToken: session!.accessToken!,
+                  accessToken: session!.accessToken! as string,
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   courseId: courseId!
                 }
