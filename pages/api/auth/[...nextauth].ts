@@ -8,10 +8,6 @@ const prisma = new PrismaClient()
 
 const options: NextAuthOptions = {
   providers: [
-    Providers.Slack({
-      clientId: process.env.SLACK_CLIENT_ID || '',
-      clientSecret: process.env.SLACK_CLIENT_SECRET || ''
-    }),
     Providers.LINE({
       clientId: process.env.LINE_CHANNEL_ID || '',
       clientSecret: process.env.LINE_CHANNEL_SECRET || ''
