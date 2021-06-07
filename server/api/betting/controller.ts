@@ -1,5 +1,5 @@
 import { createBetting, getBettingsByDate } from '$/service/betting'
-import { notifyNewBetting } from '$/service/slack'
+import { notifyNewBetting } from '$/service/line'
 import { getSessionByAccessToken } from '$/service/session'
 import { defineController } from './$relay'
 
@@ -23,7 +23,7 @@ export default defineController(() => ({
         body
       )
 
-      // slack通知は非同期で動かす
+      // line通知は非同期で動かす
       notifyNewBetting({
         userId: session.userId,
         race: body.race,
